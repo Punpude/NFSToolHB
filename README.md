@@ -1,5 +1,5 @@
 # NFSToolHB
-NeedforSpeed Unbound localization tool
+NeedforSpeed Unbound localization tool<br>
 Create CharsList: <br>
    -cl outputcharstextfile<br>
 Create Histogram:<br>
