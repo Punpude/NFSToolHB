@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +31,8 @@ namespace NFSLocaleTool
             List<string> text = new List<string>();
             foreach (Entry entry in Entries)
             {
-                text.Add($"{entry.String.Replace("\n", "¬")}");
+                //text.Add($"{entry.String.Replace("\n", "¬")}");
+                text.Add($"{entry.String}");
             }
             File.WriteAllLines(outputFile, text.ToArray());
         }
@@ -43,7 +44,8 @@ namespace NFSLocaleTool
 
             string[] text = File.ReadAllLines(textFile);
             string[] ids_ = File.ReadAllLines(idsFile);
-            if(text.Length != ids_.Length)
+                           
+            if (text.Length != ids_.Length)
             {
                 Console.WriteLine($"Несоответствие кол-ва строк в файле {Path.GetFileName(textFile)} к ID в файле {Path.GetFileName(idsFile)}");
                 Console.WriteLine($"{text.Length}/{ids_.Length}");
@@ -104,17 +106,17 @@ namespace NFSLocaleTool
             HistogramReadChars(file);
             DefaultListChars();
 
-            int countDefList = File.ReadAllLines(hgfile).Length;         
-            
+            int countDefList = File.ReadAllLines(hgfile).Length;
+            //Console.WriteLine($"{countDefList}");
             ArrayCharsList = new UInt16[DataOffSize/2];
             using (BinaryReader charsReader = new BinaryReader(File.OpenRead(hgfile)))
-            {              
+            {             
                 int countArrayCharsList = 0;
                 UInt16 tempInt;
-                for (int i = 1; i < (countDefList/3); i++)
+                for (int i = 1; i < (countDefList*3); i++)
                 {
                     tempInt = charsReader.ReadUInt16();                  
-                    if ((tempInt != 10) & (tempInt != 13))
+                    if ((tempInt != 10) & (tempInt != 13) & (tempInt != 255) & (tempInt != 172))
                     {
                         ArrayCharsList[countArrayCharsList] = tempInt;
                         countArrayCharsList++;                                         
@@ -272,12 +274,14 @@ namespace NFSLocaleTool
                 if (index != -1)
                 {
                     result.Add(DefArrayFromStrings[index]);
+                    continue;
                 }
-                else
+                if (text[i] == '¬')
                 {
-                    result.Add((byte)text[i]);
+                    result.Add(0x0a);
+                    continue;
                 }
-                            
+                result.Add((byte)text[i]);
             }
             return result.ToArray();
         }
@@ -292,11 +296,14 @@ namespace NFSLocaleTool
                 if (index != -1)
                 {
                     result += (char)ArrayOriginList[index];
+                    continue;
                 }
-                else
+                if (data[i] == 10)
                 {
-                    result += (char)data[i];
-                }              
+                    result += '¬';
+                    continue;
+                }
+                result += (char)data[i];                             
             }                       
             return result;          
         }                           
