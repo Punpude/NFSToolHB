@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +25,7 @@ namespace NFSLocaleTool
                 Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
 
                 Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
-                Console.WriteLine("FrostbiteTool.exe -h histogram.chunk chars_list.txt newhistogram.chunk");
+                Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
                 Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
                 Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
                 return;
