@@ -36,3 +36,5 @@ FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.id
 | magic          | uint32         | 4                         | 0x39001                       |
 | fileSize       | uint32         | 4                         | file size - 8                 |
 | dataOffSize    | uint32         | 4                         | 256                           |
+| 000000         | byte           | 256                       | zero bytes                    |
+| section        | uint16         | 256                       | section chars                 |
