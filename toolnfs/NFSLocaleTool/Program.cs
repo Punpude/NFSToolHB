@@ -15,19 +15,7 @@ namespace NFSLocaleTool
             NFSLocale nfs = new NFSLocale();
             if (args.Length == 0)
             {
-                Console.WriteLine("Create CharsList:");
-                Console.WriteLine("   -cl <outputcharstextfile>");
-                Console.WriteLine("Create Histogram:");
-                Console.WriteLine("   -hg <inputhistogramchunk> <inputcharstext> <outputhistogramchunkfile>");
-                Console.WriteLine("Create Text:");
-                Console.WriteLine("   -t <inputbinarychunk> <inputhistogramchunk> <outputtextfile>");
-                Console.WriteLine("Create Binary:");
-                Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
-
-                Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
-                Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
-                Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
-                Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
+                Text_console();
                 return;
             }
             string arg = args[0];
@@ -35,37 +23,13 @@ namespace NFSLocaleTool
             {
                 case "-help":
                     {
-                        Console.WriteLine("Create CharsList:");
-                        Console.WriteLine("   -cl <outputcharstextfile>");
-                        Console.WriteLine("Create Histogram:");
-                        Console.WriteLine("   -hg <inputhistogramchunk> <inputcharstext> <outputhistogramchunkfile>");
-                        Console.WriteLine("Create Text:");
-                        Console.WriteLine("   -t <inputbinarychunk> <inputhistogramchunk> <outputtextfile>");
-                        Console.WriteLine("Create Binary:");
-                        Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
-
-                        Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
-                        Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
-                        Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
-                        Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
+                        Text_console();        
                         return;
                     }
 
                 case "-h":
                     {
-                        Console.WriteLine("Create CharsList:");
-                        Console.WriteLine("   -cl <outputcharstextfile>");
-                        Console.WriteLine("Create Histogram:");
-                        Console.WriteLine("   -hg <inputhistogramchunk> <inputcharstext> <outputhistogramchunkfile>");
-                        Console.WriteLine("Create Text:");
-                        Console.WriteLine("   -t <inputbinarychunk> <inputhistogramchunk> <outputtextfile>");
-                        Console.WriteLine("Create Binary:");
-                        Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
-
-                        Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
-                        Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
-                        Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
-                        Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
+                        Text_console();
                         return;
                     }
 
@@ -75,7 +39,7 @@ namespace NFSLocaleTool
                         return;
                     }
                 case "-hg":
-                    {                      
+                    {                                     
                         nfs.HistogramWrite(args[2], args[1], args[3]);                     
                         return;
                     }
@@ -95,6 +59,24 @@ namespace NFSLocaleTool
                         return;
                     }
             }
+        }
+
+        static void Text_console()
+        {
+            Console.WriteLine("Create CharsList:");
+            Console.WriteLine("   -cl <outputcharstextfile>");
+            Console.WriteLine("Create Histogram:");
+            Console.WriteLine("   -hg <inputhistogramchunk> <inputcharstext> <outputhistogramchunkfile>");
+            Console.WriteLine("Create Text:");
+            Console.WriteLine("   -t <inputbinarychunk> <inputhistogramchunk> <outputtextfile>");
+            Console.WriteLine("Create Binary:");
+            Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
+
+            Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
+            Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
+            Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
+            Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
+            return;
         }
     }
 }
