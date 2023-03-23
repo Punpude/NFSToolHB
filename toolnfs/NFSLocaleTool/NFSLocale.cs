@@ -12,6 +12,7 @@ namespace NFSLocaleTool
     {
         //all offsets without 8 bytes
         public uint Signature = 0x039000;
+        public char end_line = '¬';
         public UInt16[] ArrayToHistogram { get; set; }
         public string[] DefArrayFile { get; set; }
         public int DefLengthFile { get; set; }
@@ -30,8 +31,7 @@ namespace NFSLocaleTool
         {
             List<string> text = new List<string>();
             foreach (Entry entry in Entries)
-            {
-                //text.Add($"{entry.String.Replace("\n", "¬")}");
+            {                
                 text.Add($"{entry.String}");
             }
             File.WriteAllLines(outputFile, text.ToArray());
@@ -113,17 +113,24 @@ namespace NFSLocaleTool
             {             
                 int countArrayCharsList = 0;
                 UInt16 tempInt;
-                for (int i = 1; i < (countDefList*3); i++)
+                charsReader.BaseStream.Position = 2;
+                for (int i = 1; i < (countDefList*3-1); i++)
                 {
                     tempInt = charsReader.ReadUInt16();                  
-                    if ((tempInt != 10) & (tempInt != 13) & (tempInt != 255) & (tempInt != 172))
+                    if ((tempInt != 10) & (tempInt != 13) & (tempInt != Convert.ToUInt16(end_line)))
                     {
                         ArrayCharsList[countArrayCharsList] = tempInt;
                         countArrayCharsList++;                                         
                     }
                 }             
-            }           
-            
+            }
+
+            if (ArrayOriginList.Contains(Convert.ToUInt16(end_line)))
+            {
+                Console.WriteLine($"Error, replace ¬(00AC) with 0000(utf-16) in original histogram.");
+                Environment.Exit(1);
+            }
+
             //256 dataoffsize
             UInt16[] arrayRemoveSimilar = new UInt16[DataOffSize/2];           
             int countRemove = 0;
@@ -139,6 +146,29 @@ namespace NFSLocaleTool
                     countRemove++;                  
                 }               
             }
+
+            
+
+            foreach (UInt16 val in arrayRemoveSimilar)
+            {
+                int count_int = 0;
+                if (val != 0)
+                {
+                    for (var i = 0; i < arrayRemoveSimilar.Length; i++)
+                    {
+                        if (arrayRemoveSimilar[i] == val)
+                        {
+                            count_int++;
+                        }
+                    }
+                    if (count_int > 1)
+                    {
+                        Console.WriteLine($"Error, the same chars are in the chars_list.");
+                        Environment.Exit(1);
+                    }
+                }                
+            }
+                    
 
             ArrayToHistogram = new UInt16[DataOffSize/2];           
             int countToHistogram = 0;
@@ -276,7 +306,7 @@ namespace NFSLocaleTool
                     result.Add(DefArrayFromStrings[index]);
                     continue;
                 }
-                if (text[i] == '¬')
+                if (text[i] == end_line)
                 {
                     result.Add(0x0a);
                     continue;
@@ -300,7 +330,7 @@ namespace NFSLocaleTool
                 }
                 if (data[i] == 10)
                 {
-                    result += '¬';
+                    result += end_line;
                     continue;
                 }
                 result += (char)data[i];                             
