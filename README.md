@@ -44,7 +44,7 @@ FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.id
 |                | byte           |                           | other                         |
 
 
-This repository contains code (which was edited for production purposes) from [xashru/punctuation-restoration](https://github.com/LinkOFF7/NFSFBLocale).
+This repository contains code (which was edited for production purposes) from [NFSFBLocale](https://github.com/LinkOFF7/NFSFBLocale).
 
 
 
