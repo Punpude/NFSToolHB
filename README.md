@@ -1,19 +1,22 @@
 # NFSToolHB
-<br>Need for Speed Unbound localization tool is an application to edit localization binary and histogram chunk files from games built with the Frostbite game engine.</br>
-<br>Use cmd</br>
-<br>Create CharsList: </br>
-<br>   -cl outputcharstextfile</br>
-<br>Create Histogram:</br>
-<br>   -hg inputhistogramchunk inputcharstext outputhistogramchunkfile</br>
-<br>Create Text:</br>
-<br>   -t inputbinarychunk inputhistogramchunk outputtextfile</br>
-<br>Create Binary:</br>
-<br>   -b inputtextfile inputhistogramchunk inputidsfile outputbinarychunkfile</br>
-<br>FrostbiteTool.exe -cl chars_list.txt</br>
-<br>FrostbiteTool.exe -h histogram.chunk chars_list.txt newhistogram.chunk</br>
-<br>FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt</br>
-<br>FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk</br>
+Need for Speed Unbound Histogram Binary 
 
+NFSToolHB is an application to edit localization binary and histogram chunk files from games built with the Frostbite game engine.
+```
+Use cmd
+Create CharsList: 
+   -cl outputcharstextfile
+Create Histogram:
+   -hg inputhistogramchunk inputcharstext outputhistogramchunkfile
+Create Text:
+  -t inputbinarychunk inputhistogramchunk outputtextfile
+Create Binary:
+   -b inputtextfile inputhistogramchunk inputidsfile outputbinarychunkfile
+FrostbiteTool.exe -cl chars_list.txt
+FrostbiteTool.exe -h histogram.chunk chars_list.txt newhistogram.chunk
+FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt
+FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk
+```
 
 ## Binary chunk file structure
 
