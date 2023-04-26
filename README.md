@@ -42,3 +42,9 @@ FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.id
 | 000000         | byte           | 256                       | zero bytes                    |
 | section        | uint16         | 256                       | section chars                 |
 |                | byte           |                           | other                         |
+
+
+This repository contains code (which was edited for production purposes) from [xashru/punctuation-restoration](https://github.com/LinkOFF7/NFSFBLocale).
+
+
+
