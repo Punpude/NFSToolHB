@@ -12,10 +12,10 @@ Create Text:
   -t inputbinarychunk inputhistogramchunk outputtextfile
 Create Binary:
    -b inputtextfile inputhistogramchunk inputidsfile outputbinarychunkfile
-FrostbiteTool.exe -cl chars_list.txt
-FrostbiteTool.exe -h histogram.chunk chars_list.txt newhistogram.chunk
-FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt
-FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk
+NFSLocaleToolHB.exe -cl chars_list.txt
+NFSLocaleToolHB.exe -h histogram.chunk chars_list.txt newhistogram.chunk
+NFSLocaleToolHB.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt
+NFSLocaleToolHB.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk
 ```
 
 ## Binary chunk file structure
@@ -46,6 +46,6 @@ FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.id
 ## Credits
 
 This repository contains code (which was edited for production purposes) from [NFSFBLocale](https://github.com/LinkOFF7/NFSFBLocale).
-
+[@LinkOFF7](https://github.com/LinkOFF7)
 
 
