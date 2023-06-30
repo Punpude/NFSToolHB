@@ -72,10 +72,10 @@ namespace NFSLocaleTool
             Console.WriteLine("Create Binary:");
             Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
 
-            Console.WriteLine("FrostbiteTool.exe -cl chars_list.txt");
-            Console.WriteLine("FrostbiteTool.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
-            Console.WriteLine("FrostbiteTool.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
-            Console.WriteLine("FrostbiteTool.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
+            Console.WriteLine("NFSLocaleToolHB.exe -cl chars_list.txt");
+            Console.WriteLine("NFSLocaleToolHB.exe -hg histogram.chunk chars_list.txt newhistogram.chunk");
+            Console.WriteLine("NFSLocaleToolHB.exe -t nfsunbound.chunk newhistogram.chunk nfsunbound.chunk.txt");
+            Console.WriteLine("NFSLocaleToolHB.exe -b nfsunbound.chunk.txt newhistogram.chunk nfsunbound.chunk.ids newnfsunbound.chunk");
             return;
         }
     }
