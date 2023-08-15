@@ -63,13 +63,13 @@ namespace NFSLocaleTool
 
         static void Text_console()
         {
-            Console.WriteLine("Create CharsList:");
+            Console.WriteLine("Generate a list of characters:");
             Console.WriteLine("   -cl <outputcharstextfile>");
-            Console.WriteLine("Create Histogram:");
+            Console.WriteLine("Export the game's locale histogram chunk, then compile a new histogram chunk using generated list of characters and game's histogram chunk:");
             Console.WriteLine("   -hg <inputhistogramchunk> <inputcharstext> <outputhistogramchunkfile>");
-            Console.WriteLine("Create Text:");
+            Console.WriteLine("Extract the locale text from game's binary chunk using new histogram chunk:");
             Console.WriteLine("   -t <inputbinarychunk> <inputhistogramchunk> <outputtextfile>");
-            Console.WriteLine("Create Binary:");
+            Console.WriteLine("Compile a binary chunk with new edits using new histogram and edited text file:");
             Console.WriteLine("   -b <inputtextfile> <inputhistogramchunk> <inputidsfile> <outputbinarychunkfile>");
 
             Console.WriteLine("NFSLocaleToolHB.exe -cl chars_list.txt");
