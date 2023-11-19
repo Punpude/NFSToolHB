@@ -131,21 +131,33 @@
   </metadata>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>1.Generate a list of characters:
-  chars_list.txt
-2.Export the game's locale histogram chunk, then compile a new histogram chunk using generated list of characters and game's histogram chunk:
-  newhistogram.chunk
+  button: Create chars list(chars_list.txt)
+
+2.Export the game's locale original histogram chunk, then compile a new histogram chunk using generated list of characters and game's histogram chunk:
+  [Open an original histogram file]
+  [Open a file with chars]
+  button: Create histogram(newhistogram.chunk)
+
 3.Extract the locale text from game's binary chunk using new histogram chunk:
-  nfsunbound.chunk.txt
-You will be provided with .ids and .txt files that contain hash names and in-game text tied to hashes respectively.
+  [Open a modified histogram file]
+  [Open a binary file]
+  button: Create text(nfsunbound.chunk.txt)
+  You will be provided with .ids and .txt files that contain hash names and in-game text tied to hashes respectively.
+
 4.Edit whatever you need to edit.
   If you're adding a new string into a text, make sure its hash is placed in its appropriate place (and not in the end of file), or else you risk mixing up all of the in-game text and it ending up in inappropriate places.
-5.Compile a binary chunk with new edits using new histogram and edited text file:
-  newnfsunbound.chunk
+
+5.Compile a binary chunk with new edits using new histogram, a file with ids and edited text file:
+  [Open a text file]
+  [Open a modified histogram file]
+  [Open a file with ids](binary file's name + .ids)
+  button: Create binary(newnfsunbound.chunk)
+
 6.All you have to do next is import new chunks into the game's database via Frosty Editor and edit BinaryChunkSize in game's FsUITextDatabase language asset.
 Make sure FsLocalization Loader (FsLocalizationPlugin) and Localized String Editor (LocalizedStringPlugin) plugins are not present in Frosty Editor, or else it crashes during the export.</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>62</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

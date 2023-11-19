@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using NFSLocaleTool;
+using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NFSLocaleTool;
-using WindowsFormsApp2;
 
 namespace WindowsFormsApp1
 {
-    
-    
+
+
     public partial class Form1 : Form
     {
         private NFSLocale nfs = new NFSLocale();
@@ -23,7 +14,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-        
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -38,23 +29,38 @@ namespace WindowsFormsApp1
         string fileContent = string.Empty;
         public string filePath = string.Empty;
         public string fileNameText = string.Empty;
-        private void LoadFile(bool txt)
+        private void LoadFile(string txt)
         {
 
             openFileDialog1.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            if (txt)
+            if (txt=="txt")
             {
                 openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog1.FilterIndex = 1;
                 openFileDialog1.FileName = "";
                 openFileDialog1.RestoreDirectory = false;
             }
-            else
+            else if (txt=="chunk")
             {
                 openFileDialog1.Filter = "chunk files (*.chunk)|*.chunk|All files (*.*)|*.*";
                 openFileDialog1.FilterIndex = 1;
                 openFileDialog1.RestoreDirectory = true;
                 openFileDialog1.FileName = "";
+            }
+            else if (txt=="ids")
+            {
+                openFileDialog1.Filter = "ids files (*.ids)|*.ids|All files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.RestoreDirectory = true;
+                if (textBox3.Text!=string.Empty)
+                {
+                    openFileDialog1.FileName = textBox3.Text + ".ids";
+                }
+                else
+                {
+                    openFileDialog1.FileName = "";
+                }
+                
             }
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -62,7 +68,7 @@ namespace WindowsFormsApp1
                 {
                     filePath = openFileDialog1.FileName;
                     //fileNameText = Path.GetFileNameWithoutExtension(openFileDialog1.InitialDirectory);
-                    
+
 
                     //var fileStream = openFileDialog1.OpenFile();
 
@@ -78,7 +84,7 @@ namespace WindowsFormsApp1
 
         private void compileANewHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadFile(false);
+            LoadFile("chunk");
         }
 
 
@@ -86,7 +92,7 @@ namespace WindowsFormsApp1
         //histogram_original
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadFile(false);
+            LoadFile("chunk");
             histogram_name = openFileDialog1.FileName;
             textBox2.Text = openFileDialog1.SafeFileName;
         }
@@ -95,7 +101,7 @@ namespace WindowsFormsApp1
         string binary_name = string.Empty;
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadFile(false);
+            LoadFile("chunk");
             binary_name = openFileDialog1.FileName;
             textBox3.Text = openFileDialog1.SafeFileName;
         }
@@ -104,10 +110,22 @@ namespace WindowsFormsApp1
         //text
         private void button5_Click(object sender, EventArgs e)
         {
-            LoadFile(true);
+            LoadFile("txt");//?
             text_name = openFileDialog1.FileName;
             textBox5.Text = openFileDialog1.SafeFileName;
         }
+
+        //mod hist
+        string mod_histogram_name = string.Empty;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadFile("chunk");
+            mod_histogram_name = openFileDialog1.FileName;
+            textBox1.Text = openFileDialog1.SafeFileName;
+        }
+
+        
+
 
 
         //histogram_original
@@ -126,6 +144,22 @@ namespace WindowsFormsApp1
         {
 
         }
+        //mod hist
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        //mod text
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //mod chars
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
 
 
@@ -137,6 +171,7 @@ namespace WindowsFormsApp1
         private void button8_Click(object sender, EventArgs e)
         {
             saveFileDialog1.FileName = "Chars_list.txt";
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
 
@@ -155,10 +190,11 @@ namespace WindowsFormsApp1
             try
             {
                 saveFileDialog1.FileName = "";
+                saveFileDialog1.Filter = "chunk files (*.chunk)|*.chunk|All files (*.*)|*.*";
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 filename_histogram_save = saveFileDialog1.FileName;
-                nfs.HistogramWrite(filename_chars_save, histogram_name, filename_histogram_save);
+                nfs.HistogramWrite(mchars_name, histogram_name, filename_histogram_save);
             }
             catch (Exception ex)
             {
@@ -179,10 +215,19 @@ namespace WindowsFormsApp1
             try
             {
                 saveFileDialog1.FileName = "";
+                saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 filename_text_save = saveFileDialog1.FileName;
-                nfs.Read(binary_name, histogram_name);
+                if (mod_histogram_name==string.Empty)
+                {
+                    nfs.Read(binary_name, histogram_name);
+                }
+                else
+                {
+                    nfs.Read(binary_name, mod_histogram_name);
+                }
+                
                 nfs.ExtractText(filename_text_save);
             }
             catch (Exception ex)
@@ -193,9 +238,29 @@ namespace WindowsFormsApp1
             //nfs.ExtractText("text_"+ binary_name + ".txt");
 
         }
+        //mod chars
+        string mchars_name = string.Empty;
+        private void button11_Click(object sender, EventArgs e)
+        {
+            LoadFile("txt");
+            mchars_name = openFileDialog1.FileName;
+            textBox7.Text = openFileDialog1.SafeFileName;
+        }
+        //ids
+        private void textBox4_TextChanged_1(object sender, EventArgs e)
+        {
 
-
-
+        }
+        string ids_name = string.Empty;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadFile("ids");
+            ids_name = openFileDialog1.FileName;
+            if (ids_name != ".ids")
+            {
+                textBox4.Text = openFileDialog1.SafeFileName;
+            }
+        }
 
         string filename_binary_save = string.Empty;
         //CreateBinary <inputtextfile> <inputhistogramchunk> <outputbinarychunkfile> <inputidsfile> 
@@ -205,10 +270,13 @@ namespace WindowsFormsApp1
             try
             {
                 saveFileDialog1.FileName = "";
+                saveFileDialog1.Filter = "chunk files (*.chunk)|*.chunk|All files (*.*)|*.*";
                 if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 filename_binary_save = saveFileDialog1.FileName;
-                nfs.WriteFromText(text_name, histogram_name, filename_binary_save, binary_name + ".ids");
+
+                nfs.WriteFromText(text_name, mod_histogram_name, filename_binary_save, ids_name);
+
             }
             catch (Exception ex)
             {
@@ -217,7 +285,7 @@ namespace WindowsFormsApp1
             //nfs.WriteFromText(textBox5.Text, textBox2.Text, "new" + text_name + ".chunk", textBox3.Text + ".ids");
         }
 
-        
+
 
 
 
@@ -257,5 +325,7 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        
     }
 }
