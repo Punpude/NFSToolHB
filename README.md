@@ -7,7 +7,7 @@
 ### [Need for Speed: Unbound — Russian Localization](https://nfsmods.xyz/mod/4749)
 
 The aforementioned game lacks Russian localization since the release. The game also has poor support of Cyrillic characters — only handful of them were encoded into the game for a simple task of displaying songs' track names, rendering the ability to edit the in-game text in [Frosty Tool Suite](https://github.com/CadeEvs/FrostyToolsuite/tree/1.0.7) impossible.
-<br>NFSLocaleToolHB solves this issue by editing all of the files outside of Frosty Editor and importing them back afterwards, [bypassing all checks for histogram characters encoding integrity during mod's compilation](https://cdn.discordapp.com/attachments/951527850727600158/1136347084941963404/image.png). Also, having working Ё and ё is a welcome addition, which official localizations lack and overlook during the development.
+<br>NFSLocaleToolHB solves this issue by editing all of the files outside of Frosty Editor and importing them back afterwards, [bypassing all checks for histogram characters encoding integrity during mod's compilation](https://cdn.discordapp.com/attachments/951527850727600158/1136347084941963404/image.png?ex=6616c9b1&is=660454b1&hm=d514977ed8a881fd719b74005a2e16bc99ae2750b9e37a6ebed7b827a9dd39d0&). Also, having working Ё and ё is a welcome addition, which official localizations lack and overlook during the development.
 
 ## Usage
 
@@ -64,4 +64,9 @@ You will be provided with .ids and .txt files that contain hash names and in-gam
 
 ## Credits
 
-This repository contains code (which was edited for production purposes) from [NFSFBLocale](https://github.com/LinkOFF7/NFSFBLocale) made by [@LinkOFF7](https://github.com/LinkOFF7).
+This repository contains code (which was edited for production purposes) from [NFSFBLocale](https://github.com/LinkOFF7/NFSFBLocale) tool made by [@LinkOFF7](https://github.com/LinkOFF7).
+
+## Disclaimer
+
+Neither this project or pieces of code, nor authors are affiliated with Electronic Arts and/or DICE.
+<br>Need for Speed™ is a registered trademark of Electronic Arts. Frostbite™ is a registered trademark of EA Digital Illusions Creative Entertainment (DICE)
